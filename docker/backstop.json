@@ -19,7 +19,6 @@
       "label": "BackstopJS Homepage",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "https://garris.github.io/BackstopJS/",
-      "localStoragePath": "backstop_data/engine_scripts/localStorage.json",
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",

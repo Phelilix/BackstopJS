@@ -1,0 +1,7 @@
+Er is een email, die meerdere hobby heeft.
+
+select email, hobbyid, count(hobbyid) from personhashobby group by email;
+
+select email, hobbyid from personhashobby phh 
+
+select count(phh.hobbyid), phh.email, phh.hobbyid, count(phh1.hobbyid), phh1.email, phh1.hobbyid from personhashobby phh join personhashobby phh1 on phh.hobbyid = phh1.hobbyid;

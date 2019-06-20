@@ -1,0 +1,7 @@
+FROM node:8.12.0
+
+COPY package*.json /src
+VOLUME [""]
+RUN npm install
+
+WORKDIR /src
