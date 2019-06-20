@@ -1,12 +1,9 @@
 var fs = require('fs');
 
 /*
-  This code is called after the command to navigate has been fired.
-  before the delay, before the wait for an element to render (readySelector) and before the code that runs just before taking the picture (readyEvent).
-
   If the data is like this:
   +------------------------+--------------+
-  |         Key:           |     value:   |
+  |          Key:          |    value:    |
   +------------------------+--------------+
   |amplitude_lastEventId   |             2|
   |amplitude_lastEventTime | 1543336128855|
@@ -32,9 +29,11 @@ async function loadLocalStorageData (path, page) {
   }, localStorageData);
 }
 
-module.exports = async (page, scenario, localStorageDataPath) => {
-  window.localStorage.clear();
-  await loadLocalStorageData(localStorageDataPath, page);
-  // TODO: decide to only show this when debugging. And how to figure out if debug is on.
-  console.log('Local storage state restored with: ', JSON.stringify(window.localStorage, null, 2));
+module.exports = async (page, scenario) => {
+  if (fs.existsSync(scenario.localStoragePath) && scenario.url) {
+    await page.goto(scenario.url);
+    window.localStorage.clear();
+    await loadLocalStorageData(scenario.localStoragePath, page);
+    console.log('Local storage state restored with: ', JSON.stringify(window.localStorage, null, 2));
+  }
 };
